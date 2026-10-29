@@ -1,0 +1,96 @@
+# Canvas/cut-job protobuf schema — Cricut Design Space 10.9.118
+# Source: unpacked/design-space-app/canvas-webw-cricanvas.js (protobuf.js runtime, minified)
+# Method: names recovered from protobuf.js verifier strings ('<Msg>.<field>: <type> expected')
+#   and 'field: enum ...' typings. Wakaru source-recovery was unavailable (no binary installed),
+#   so field-level schemas are not reconstructed here — only the type inventory.
+
+## Message types (48) — confirmed via verifier strings
+  AppliedMaterial
+  Artboard
+  Assembly
+  Attachment
+  AttachmentPlacement
+  Bitmap
+  BitmapMetaData
+  Boundary
+  BoundaryExplicit
+  Cache
+  CanvasBody
+  CanvasChangedBody
+  Circle
+  ClipGraphic
+  Design
+  DifferenceGraphic
+  EraseGraphic
+  FontBody
+  FontCharacterImage
+  Graphic
+  GraphicContainer
+  ImageBody
+  ImageConvertBody
+  ImageSourceDetails
+  ImageUploadBody
+  Intent
+  IntersectionGraphic
+  LayerContourDetails
+  LayerDataBody
+  LayerFill
+  LayerGraphic
+  LayerStroke
+  MaterialClass
+  PhysicalObject
+  Piece
+  RectF64
+  Region
+  StickerizedGraphic
+  Substrate
+  Surface
+  SurfaceImage
+  SurfaceRepresentation
+  SymmetricDifferenceGraphic
+  TextGraphic
+  UnionGraphic
+  UpdateReasons
+  WarpedGraphic
+  Workspace
+
+## Enum-typed fields (26) — referenced enum types
+  Alignment
+  CanvasType
+  Capabilities
+  ContainmentMode
+  DefaultPieceLocks
+  FillBitmapType
+  FillRule
+  FillType
+  FontType
+  ImageSourceType
+  Kind
+  LayerOperationsUsedSet
+  LayerOutputType
+  LayerPolarity
+  LockedType
+  MaterialType
+  OriginalOutputType
+  Role
+  StickerType
+  StrokeType
+  Style
+  TextMode
+  TextRenderer
+  UploadType
+  UserLocks
+  VerticalAlignment
+
+## Cut/Material model names present in file (11)
+  Cut
+  CutState
+  CutKiss
+  CutInteriorShape
+  CutDie
+  CutDieCutEdge
+  Material
+  MaterialType
+  MaterialId
+  MaterialClass
+  MaterialColor

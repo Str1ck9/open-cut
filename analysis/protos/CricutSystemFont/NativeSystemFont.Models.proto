@@ -1,0 +1,142 @@
+// recovered FileDescriptorProto: NativeSystemFont.Models.proto
+syntax = "proto3";
+package NativeSystemFont.Models;
+
+enum SpellCheckActionType {
+  PB_SPELLCHECK_ACTION_NONE = 0;
+  PB_SPELLCHECK_ACTION_SUGGESTION = 1;
+  PB_SPELLCHECK_ACTION_REPLACE = 2;
+  PB_SPELLCHECK_ACTION_DELETE = 3;
+}
+
+message PBUserSettingsFont {
+  string setting1 = 1;
+  string setting2 = 2;
+  string settings1 = 3;
+  string settings2 = 4;
+  string settings3 = 5;
+  string settings4 = 6;
+  string settings5 = 7;
+  string settings6 = 8;
+  string settings7 = 9;
+  string settings8 = 10;
+  string settings9 = 11;
+  string settings10 = 12;
+  string settings11 = 13;
+  string settings12 = 14;
+}
+
+message TextEncoded {
+  repeated uint32 encoded = 1;
+}
+
+message PBFont {
+  string name = 1;
+}
+
+message PBFontOTF {
+  NativeSystemFont.Models.TextEncoded file_name = 1;
+  bytes file_bytes = 9;
+  uint32 face_index = 2;
+  uint32 character_map_index = 3;
+  NativeSystemFont.Models.TextEncoded family_name = 4;
+  NativeSystemFont.Models.TextEncoded style_name = 5;
+  NativeSystemFont.Models.TextEncoded i18n_family_name = 6;
+  NativeSystemFont.Models.TextEncoded i18n_subfamily_name = 7;
+  repeated NativeSystemFont.Models.PBFontCharacterMapOTF character_maps = 8;
+}
+
+message PBFontCharacterMapOTF {
+  uint32 character_map_index = 1;
+  uint32 encoding = 2;
+  uint32 encoding_id = 3;
+  uint32 platform_id = 4;
+}
+
+message PBFontFileOTF {
+  NativeSystemFont.Models.TextEncoded file_name = 1;
+  bytes file_bytes = 2;
+}
+
+message CharacterKerning {
+  int32 char1 = 1;
+  int32 char2 = 2;
+  double kerning = 3;
+}
+
+message KerningPairOTF {
+  int32 char_code1 = 1;
+  int32 char_code2 = 2;
+  int32 kerning = 3;
+}
+
+message FontSelection {
+  string name = 1;
+  bool bold = 2;
+  bool italic = 3;
+}
+
+message Metrics {
+  int32 baseline = 1;
+  int32 font_id = 2;
+  int32 width = 3;
+  int32 height = 4;
+  int32 space_width = 5;
+  repeated NativeSystemFont.Models.CharacterKerning kerning_pairs = 9;
+}
+
+message MetricsOTF {
+  int32 units_per_EM = 1;
+  int32 ascender = 2;
+  int32 descender = 3;
+  int32 height = 4;
+  int32 max_advance_width = 5;
+  int32 max_advance_height = 6;
+  int32 underline_position = 7;
+  int32 underline_thickness = 8;
+  int32 space_width = 9;
+  repeated NativeSystemFont.Models.KerningPairOTF kerning_pairs = 10;
+  repeated uint32 character_codes = 11;
+  NativeSystemFont.Models.FontBBox bbox = 12;
+}
+
+message Character {
+  int32 character_code = 1;
+  double bearing_left = 3;
+  double bearing_right = 4;
+  double width = 5;
+  int32 glyph_native_size_width = 6;
+  int32 glyph_native_size_height = 7;
+  int32 glyph_cell_size_width = 8;
+  int32 glyph_cell_size_height = 9;
+  int32 glyph_origin_x = 10;
+  int32 glyph_origin_y = 11;
+  double path_offset_y = 12;
+  double path_width = 13;
+  double path_height = 14;
+  string path_data = 15;
+}
+
+message CharacterOTF {
+  int32 character_code = 1;
+  string path_data = 2;
+  int32 bearing_left = 3;
+  int32 bearing_right = 4;
+  double advance = 5;
+}
+
+message FontBBox {
+  int32 y_min = 1;
+  int32 y_max = 2;
+  int32 x_min = 3;
+  int32 x_max = 4;
+}
+
+message SpellCheckActionAction {
+  NativeSystemFont.Models.TextEncoded word = 1;
+  NativeSystemFont.Models.SpellCheckActionType action = 2;
+  int32 index = 3;
+  int32 length = 4;
+  repeated NativeSystemFont.Models.TextEncoded suggestions = 5;
+}
+

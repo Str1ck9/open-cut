@@ -1,0 +1,30 @@
+# CricutLocalData — local offline-cache schema (Design Space 10.9.118)
+# Source: device helper plugins/local-data/CricutLocalData (C++, universal Mach-O).
+# Method: embedded protobuf FileDescriptorProto message names + SQL/ORM column tokens (strings).
+# Storage: SQLite via SQLCipher (metadata.db is ENCRYPTED: cipher_default_kdf_algorithm/hmac/kdf_iter present).
+#   The DB key is not analyzed (out of scope). FTS3/4 full-text search tables are used (SQLite internals).
+
+## Data-model protobuf messages (NativeLocalData.*)
+PBCanvasDetailsFileData      PBCanvasIDToEntityIDsData    PBEntityIDToCanvasesData
+PBOfflineCanvasData          PBCanvasImageData            PBImageIsPattern
+PBFontFamilyData             PBFontFamilyLinkData         PBSingleFontData / PBSingleFontDataOTF
+PBFontFilePaths              PBEntitlementData            PBFileLD
+PBUserSettingsLD
+
+## Table/column tokens by domain
+[canvases]        canvas_id(PK), canvas_data, canvas_details, canvas_json, canvas_json_file_size, canvas_cache_timestamp
+[canvas<->entity] entity_id, entity_ids, canvas_ids, entity_id_canvases_data, entity_id_to_canvas_data   (M:N mapping)
+[images]          image_id(PK), image_data, image_details, image_preview, image_preview_url, bitmap_data
+[fonts]           font_id, font_family_ids, font_family_data, font_family_name(s), font_family_preview(_url),
+                  font_family_fonts, font_chars_data, font_metric_data, font_file_paths, font_id_paths
+[entitlements]    entitlement_id(key), entitlement_expiration_date, entitlements_data (serialized PBEntitlementData)
+                  ops: Get/Set/DeleteEntitlements, GetAllEntitlementIDs, CheckAllEntitlementsValid,
+                       ClearRemainingOrphanEntitlements  -> offline Cricut Access gating by expiration
+[materials/mach]  material_settings_data, material_sizes_data, machine_families_data,
+                  machine_pressure_settings_data, machine_serial, pattern_search_filter_data, (calibration material settings)
+[user/profile]    user_key, user_settings(_data), user_preferences_data, user_version, profile_id, tag_data, tag_type
+
+## API surface: 151 NativeLocalData.Request*/Response* names (get/set/delete CRUD).
+##   Domains: canvases, images(+bitmap fills), fonts(OTF+metrics+chars), entitlements, pens(+V2),
+##   material settings/sizes, machine families/pressure, calibration material settings, countries,
+##   profiles, tags, user data/preferences/settings, session data, event data, raw files.

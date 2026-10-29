@@ -1,0 +1,784 @@
+// recovered FileDescriptorProto: NativeLocalData.proto
+syntax = "proto3";
+package NativeLocalData;
+
+message PBFileLD {
+  bytes bytes = 1;
+  string mime_type = 2;
+  string filename = 3;
+}
+
+message PBEntitlementData {
+  uint32 entitlement_id = 1;
+  uint32 entitlement_expiration_date = 2;
+  bool is_entitled = 3;
+}
+
+message PBOfflineCanvasData {
+  int64 canvas_id = 1;
+  bytes canvas_json = 2;
+  bytes canvas_details = 3;
+  bytes preview_image = 4;
+  string preview_image_url = 5;
+  repeated uint32 entity_ids = 6;
+}
+
+message PBCanvasImageData {
+  uint32 image_id = 1;
+  bytes image_data = 2;
+  bytes image_details = 3;
+  bytes image_preview = 4;
+  string image_preview_url = 5;
+  bool is_pattern = 6;
+  repeated NativeLocalData.PBFileLD bitmap_data = 7;
+  uint32 entity_id = 8;
+}
+
+message PBFontFamilyData {
+  string font_family_name = 1;
+  bytes font_family_data = 2;
+  bytes font_family_preview = 3;
+  string font_family_preview_url = 4;
+}
+
+message PBSingleFontData {
+  uint32 font_id = 1;
+  bytes metrics = 2;
+  bytes all_characters = 3;
+  repeated NativeLocalData.PBCanvasImageData images = 4;
+}
+
+message PBSingleFontDataOTF {
+  uint32 font_id = 1;
+  bytes otf_file_data = 2;
+  bytes metrics = 3;
+  bytes all_characters = 4;
+}
+
+message PBFontFilePaths {
+  string font_family_name = 1;
+  repeated string font_id_paths = 2;
+}
+
+message PBUserLowerEncryptionPacket {
+  // [REDACTED — protected surface, SPEC §0.3] 3 field(s) present; layout omitted
+}
+
+message PBUserUpperEncryptionPacket {
+  // [REDACTED — protected surface, SPEC §0.3] 3 field(s) present; layout omitted
+}
+
+message PBUserReturnPacket {
+  uint32 cricut_id = 1;
+  bytes user_key = 2;
+  uint32 local_data_version = 3;
+  bytes shared_base64_key = 4;
+}
+
+message PBEntityIDToCanvasesData {
+  uint32 entity_id = 1;
+  repeated int64 canvas_ids = 2;
+}
+
+message PBCanvasIDToEntityIDsData {
+  int64 canvas_id = 1;
+  repeated uint32 entity_ids = 2;
+}
+
+message PBFontFamilyLinkData {
+  string font_family_name = 1;
+  repeated uint32 font_ids = 2;
+}
+
+message PBImageIsPattern {
+  uint32 image_id = 1;
+  bool is_pattern = 2;
+}
+
+message PBCanvasDetailsFileData {
+  bytes canvas_details = 1;
+  uint32 canvas_json_file_size = 2;
+  string preview_image_url = 3;
+}
+
+message PBUserSettingsLD {
+  string setting1 = 1;
+  string setting2 = 2;
+  string settings1 = 3;
+  string settings2 = 4;
+  string settings3 = 5;
+  string settings4 = 6;
+  string settings5 = 7;
+  string settings6 = 8;
+  string settings7 = 9;
+  string settings8 = 10;
+  string settings9 = 11;
+  string settings10 = 12;
+  string settings11 = 13;
+}
+
+message ResponseError {
+  string error = 1;
+  int32 error_num = 2;
+}
+
+message PBLocalDataInteractionMessage {
+  string instance_id = 2;
+  string request_id = 3;
+  double processing_time = 4;
+  NativeLocalData.RequestLocalDataStartInteraction request_start_interaction = 6;
+  NativeLocalData.RequestLocalDataStopInteraction request_stop_interaction = 8;
+  NativeLocalData.RequestLocalDataGetRawFile request_get_raw_file = 10;
+  NativeLocalData.RequestLocalDataPutRawFile request_put_raw_file = 12;
+  NativeLocalData.RequestLocalDataGetSessionData request_get_session_data = 14;
+  NativeLocalData.RequestLocalDataSetSessionData request_set_session_data = 16;
+  NativeLocalData.RequestLocalDataGetLoggedInUserData request_get_logged_in_user_data = 18;
+  NativeLocalData.RequestLocalDataSetLoggedInUserData request_set_logged_in_user_data = 20;
+  NativeLocalData.RequestLocalDataGetAllCanvasIDs request_get_all_canvas_ids = 22;
+  NativeLocalData.RequestLocalDataGetCanvasData request_get_canvas_data = 24;
+  NativeLocalData.RequestLocalDataSetCanvasData request_set_canvas_data = 26;
+  NativeLocalData.RequestLocalDataDeleteCanvasesByIDs request_delete_canvases_by_ids = 28;
+  NativeLocalData.RequestLocalDataGetPens request_get_pens = 30;
+  NativeLocalData.RequestLocalDataSetPens request_set_pens = 32;
+  NativeLocalData.RequestLocalDataGetPensV2 request_get_pens_v2 = 34;
+  NativeLocalData.RequestLocalDataSetPensV2 request_set_pens_v2 = 36;
+  NativeLocalData.RequestLocalDataGetProfileByID request_get_profile_by_id = 38;
+  NativeLocalData.RequestLocalDataSetProfileByID request_set_profile_by_id = 40;
+  NativeLocalData.RequestLocalDataGetUserPreferences request_get_user_preferences = 42;
+  NativeLocalData.RequestLocalDataSetUserPreferences request_set_user_preferences = 44;
+  NativeLocalData.RequestLocalDataGetUserSettings request_get_user_settings = 46;
+  NativeLocalData.RequestLocalDataSetUserSettings request_set_user_settings = 48;
+  NativeLocalData.RequestLocalDataGetPatternSearchFilters request_get_pattern_search_filters = 50;
+  NativeLocalData.RequestLocalDataSetPatternSearchFilters request_set_pattern_search_filters = 52;
+  NativeLocalData.RequestLocalDataGetMaterialSizes request_get_material_sizes = 54;
+  NativeLocalData.RequestLocalDataSetMaterialSizes request_set_material_sizes = 56;
+  NativeLocalData.RequestLocalDataGetMaterialSettings request_get_material_settings = 58;
+  NativeLocalData.RequestLocalDataSetMaterialSettings request_set_material_settings = 60;
+  NativeLocalData.RequestLocalDataGetCalibrationMaterialSettings request_get_calibration_material_settings = 62;
+  NativeLocalData.RequestLocalDataSetCalibrationMaterialSettings request_set_calibration_material_settings = 64;
+  NativeLocalData.RequestLocalDataGetMachinePressureSettings request_get_machine_pressure_settings = 66;
+  NativeLocalData.RequestLocalDataSetMachinePressureSettings request_set_machine_pressure_settings = 68;
+  NativeLocalData.RequestLocalDataGetTagsByType request_get_tags_by_type = 70;
+  NativeLocalData.RequestLocalDataSetTagsByType request_set_tags_by_type = 72;
+  NativeLocalData.RequestLocalDataGetMachineFamilies request_get_machine_families = 74;
+  NativeLocalData.RequestLocalDataSetMachineFamilies request_set_machine_families = 76;
+  NativeLocalData.RequestLocalDataGetCountries request_get_countries = 78;
+  NativeLocalData.RequestLocalDataSetCountries request_set_countries = 80;
+  NativeLocalData.RequestLocalDataDeleteUserInfo request_delete_user_info = 82;
+  NativeLocalData.RequestLocalDataGetAllImageIDs request_get_all_image_ids = 84;
+  NativeLocalData.RequestLocalDataGetImagesByIDs request_get_images_by_ids = 86;
+  NativeLocalData.RequestLocalDataSetImagesByIDs request_set_images_by_ids = 88;
+  NativeLocalData.RequestLocalDataDeleteImagesByIDs request_delete_images_by_ids = 90;
+  NativeLocalData.RequestLocalDataSetEntityIDByImageID request_set_entity_id_by_image_id = 92;
+  NativeLocalData.RequestLocalDataGetFontMetricsByID request_get_font_metrics_by_id = 94;
+  NativeLocalData.RequestLocalDataSetFontMetricsByID request_set_font_metrics_by_id = 96;
+  NativeLocalData.RequestLocalDataGetFontCharsByID request_get_font_chars_by_id = 98;
+  NativeLocalData.RequestLocalDataSetFontCharsByID request_set_font_chars_by_id = 100;
+  NativeLocalData.RequestLocalDataGetAllFontFamilies request_get_all_font_families = 102;
+  NativeLocalData.RequestLocalDataSetFontFamily request_set_font_family = 104;
+  NativeLocalData.RequestLocalDataDeleteFontsByFamilies request_delete_fonts_by_families = 106;
+  NativeLocalData.RequestLocalDataGetAllEntitlementIDs request_get_all_entitlement_ids = 108;
+  NativeLocalData.RequestLocalDataGetEntitlementsByIDs request_get_entitlements_by_ids = 110;
+  NativeLocalData.RequestLocalDataSetEntitlements request_set_entitlements = 112;
+  NativeLocalData.RequestLocalDataCommitByTimestamp request_commit_by_timestamp = 114;
+  NativeLocalData.RequestLocalDataClearCanvasCache request_clear_canvas_cache = 116;
+  NativeLocalData.RequestLocalDataGetCanvasesForEntityIDs request_get_canvases_for_entity_ids = 118;
+  NativeLocalData.RequestLocalDataAppendEventData request_append_event_data = 120;
+  NativeLocalData.RequestLocalDataGetEventData request_get_event_data = 122;
+  NativeLocalData.RequestLocalDataDeleteEventData request_delete_event_data = 124;
+  NativeLocalData.RequestLocalDataRefreshDatabase request_refresh_database = 126;
+  NativeLocalData.RequestLocalDataLinkFamilyToFontID request_link_family_to_font_id = 128;
+  NativeLocalData.RequestLocalDataUpdateImageIsPattern request_update_image_is_pattern = 130;
+  NativeLocalData.RequestLocalDataSetCanvasEntityIDs request_set_canvas_entity_ids = 132;
+  NativeLocalData.RequestLocalDataGetCanvasDetailsAndSize request_get_canvas_details_and_size = 134;
+  NativeLocalData.RequestLocalDataGetBitmapFillById request_get_bitmap_fill_by_id = 136;
+  NativeLocalData.RequestLocalDataSetFontFamilyOTF request_set_font_family_otf = 138;
+  NativeLocalData.RequestLocalDataGetOTFFontFilePaths request_get_otf_font_file_paths = 140;
+  NativeLocalData.ResponseError response_error = 5;
+  NativeLocalData.ResponseLocalDataStartInteraction response_start_interaction = 7;
+  NativeLocalData.ResponseLocalDataStopInteraction response_stop_interaction = 9;
+  NativeLocalData.ResponseLocalDataGetRawFile response_get_raw_file = 11;
+  NativeLocalData.ResponseLocalDataPutRawFile response_put_raw_file = 13;
+  NativeLocalData.ResponseLocalDataGetSessionData response_get_session_data = 15;
+  NativeLocalData.ResponseLocalDataSetSessionData response_set_session_data = 17;
+  NativeLocalData.ResponseLocalDataGetLoggedInUserData response_get_logged_in_user_data = 19;
+  NativeLocalData.ResponseLocalDataSetLoggedInUserData response_set_logged_in_user_data = 21;
+  NativeLocalData.ResponseLocalDataGetAllCanvasIDs response_get_all_canvas_ids = 23;
+  NativeLocalData.ResponseLocalDataGetCanvasData response_get_canvas_data = 25;
+  NativeLocalData.ResponseLocalDataSetCanvasData response_set_canvas_data = 27;
+  NativeLocalData.ResponseLocalDataDeleteCanvasesByIDs response_delete_canvases_by_ids = 29;
+  NativeLocalData.ResponseLocalDataGetPens response_get_pens = 31;
+  NativeLocalData.ResponseLocalDataSetPens response_set_pens = 33;
+  NativeLocalData.ResponseLocalDataGetPensV2 response_get_pens_v2 = 35;
+  NativeLocalData.ResponseLocalDataSetPensV2 response_set_pens_v2 = 37;
+  NativeLocalData.ResponseLocalDataGetProfileByID response_get_profile_by_id = 39;
+  NativeLocalData.ResponseLocalDataSetProfileByID response_set_profile_by_id = 41;
+  NativeLocalData.ResponseLocalDataGetUserPreferences response_get_user_preferences = 43;
+  NativeLocalData.ResponseLocalDataSetUserPreferences response_set_user_preferences = 45;
+  NativeLocalData.ResponseLocalDataGetUserSettings response_get_user_settings = 47;
+  NativeLocalData.ResponseLocalDataSetUserSettings response_set_user_settings = 49;
+  NativeLocalData.ResponseLocalDataGetPatternSearchFilters response_get_pattern_search_filters = 51;
+  NativeLocalData.ResponseLocalDataSetPatternSearchFilters response_set_pattern_search_filters = 53;
+  NativeLocalData.ResponseLocalDataGetMaterialSizes response_get_material_sizes = 55;
+  NativeLocalData.ResponseLocalDataSetMaterialSizes response_set_material_sizes = 57;
+  NativeLocalData.ResponseLocalDataGetMaterialSettings response_get_material_settings = 59;
+  NativeLocalData.ResponseLocalDataSetMaterialSettings response_set_material_settings = 61;
+  NativeLocalData.ResponseLocalDataGetCalibrationMaterialSettings response_get_calibration_material_settings = 63;
+  NativeLocalData.ResponseLocalDataSetCalibrationMaterialSettings response_set_calibration_material_settings = 65;
+  NativeLocalData.ResponseLocalDataGetMachinePressureSettings response_get_machine_pressure_settings = 67;
+  NativeLocalData.ResponseLocalDataSetMachinePressureSettings response_set_machine_pressure_settings = 69;
+  NativeLocalData.ResponseLocalDataGetTagsByType response_get_tags_by_type = 71;
+  NativeLocalData.ResponseLocalDataSetTagsByType response_set_tags_by_type = 73;
+  NativeLocalData.ResponseLocalDataGetMachineFamilies response_get_machine_families = 75;
+  NativeLocalData.ResponseLocalDataSetMachineFamilies response_set_machine_families = 77;
+  NativeLocalData.ResponseLocalDataGetCountries response_get_countries = 79;
+  NativeLocalData.ResponseLocalDataSetCountries response_set_countries = 81;
+  NativeLocalData.ResponseLocalDataDeleteUserInfo response_delete_user_info = 83;
+  NativeLocalData.ResponseLocalDataGetImagesByIDs response_get_image_by_ids = 85;
+  NativeLocalData.ResponseLocalDataSetImagesByIDs response_set_image_by_ids = 87;
+  NativeLocalData.ResponseLocalDataDeleteImagesByIDs response_delete_images_by_ids = 89;
+  NativeLocalData.ResponseLocalDataSetEntityIDByImageID response_set_entity_id_by_image_id = 91;
+  NativeLocalData.ResponseLocalDataGetFontMetricsByID response_get_font_metrics_by_id = 93;
+  NativeLocalData.ResponseLocalDataSetFontMetricsByID response_set_font_metrics_by_id = 95;
+  NativeLocalData.ResponseLocalDataGetFontCharsByID response_get_font_chars_by_id = 97;
+  NativeLocalData.ResponseLocalDataSetFontCharsByID response_set_font_chars_by_id = 99;
+  NativeLocalData.ResponseLocalDataGetAllFontFamilies response_get_all_font_families = 101;
+  NativeLocalData.ResponseLocalDataSetFontFamily response_set_font_family = 103;
+  NativeLocalData.ResponseLocalDataDeleteFontsByFamilies response_delete_fonts_by_families = 105;
+  NativeLocalData.ResponseLocalDataGetAllImageIDs response_get_all_image_ids = 107;
+  NativeLocalData.ResponseLocalDataGetAllEntitlementIDs response_get_all_entitlement_ids = 109;
+  NativeLocalData.ResponseLocalDataGetEntitlementsByIDs response_get_entitlements_by_ids = 111;
+  NativeLocalData.ResponseLocalDataSetEntitlements response_set_entitlements = 113;
+  NativeLocalData.ResponseLocalDataCommitByTimestamp response_commit_by_timestamp = 115;
+  NativeLocalData.ResponseLocalDataClearCanvasCache response_clear_canvas_cache = 117;
+  NativeLocalData.ResponseLocalDataGetCanvasesForEntityIDs response_get_canvases_for_entity_ids = 119;
+  NativeLocalData.ResponseLocalDataAppendEventData response_append_event_data = 121;
+  NativeLocalData.ResponseLocalDataGetEventData response_get_event_data = 123;
+  NativeLocalData.ResponseLocalDataDeleteEventData response_delete_event_data = 125;
+  NativeLocalData.ResponseLocalDataRefreshDatabase response_refresh_database = 127;
+  NativeLocalData.ResponseLocalDataLinkFamilyToFontID response_link_family_to_font_id = 129;
+  NativeLocalData.ResponseLocalDataUpdateImageIsPattern response_update_image_is_pattern = 131;
+  NativeLocalData.ResponseLocalDataSetCanvasEntityIDs response_set_canvas_entity_ids = 133;
+  NativeLocalData.ResponseLocalDataGetCanvasDetailsAndSize response_get_canvas_details_and_size = 135;
+  NativeLocalData.ResponseLocalDataGetBitmapFillById response_get_bitmap_fill_by_id = 137;
+  NativeLocalData.ResponseLocalDataSetFontFamilyOTF response_set_font_family_otf = 139;
+  NativeLocalData.ResponseLocalDataGetOTFFontFilePaths response_get_otf_font_file_paths = 141;
+}
+
+message RequestLocalDataStartInteraction {
+  string log_id = 1;
+  string app_data_path = 2;
+  uint32 cricut_id = 3;
+  NativeLocalData.PBUserSettingsLD user_settings = 4;
+  bool rebuild_database = 5;
+}
+
+message ResponseLocalDataStartInteraction {
+  uint32 cricut_id = 1;
+  bool versions_compatible = 2;
+  bool versions_match = 3;
+}
+
+message RequestLocalDataStopInteraction {
+}
+
+message ResponseLocalDataStopInteraction {
+}
+
+message RequestLocalDataGetRawFile {
+  string file_path = 1;
+  string file_name = 2;
+}
+
+message ResponseLocalDataGetRawFile {
+  bytes bytes = 1;
+}
+
+message RequestLocalDataPutRawFile {
+  string file_path = 1;
+  string file_name = 2;
+  bytes bytes = 3;
+}
+
+message ResponseLocalDataPutRawFile {
+}
+
+message RequestLocalDataGetSessionData {
+}
+
+message ResponseLocalDataGetSessionData {
+  bytes session_data = 1;
+}
+
+message RequestLocalDataSetSessionData {
+  bytes session_data = 1;
+}
+
+message ResponseLocalDataSetSessionData {
+}
+
+message RequestLocalDataGetLoggedInUserData {
+}
+
+message ResponseLocalDataGetLoggedInUserData {
+  bytes logged_in_user_data = 1;
+}
+
+message RequestLocalDataSetLoggedInUserData {
+  bytes logged_in_user_data = 1;
+}
+
+message ResponseLocalDataSetLoggedInUserData {
+}
+
+message RequestLocalDataGetAllCanvasIDs {
+}
+
+message ResponseLocalDataGetAllCanvasIDs {
+  repeated int64 canvas_ids = 1;
+}
+
+message RequestLocalDataGetCanvasData {
+  repeated int64 canvas_ids = 1;
+}
+
+message ResponseLocalDataGetCanvasData {
+  repeated NativeLocalData.PBOfflineCanvasData canvases = 1;
+}
+
+message RequestLocalDataSetCanvasData {
+  NativeLocalData.PBOfflineCanvasData canvas_data = 1;
+}
+
+message ResponseLocalDataSetCanvasData {
+  int64 canvas_id = 1;
+}
+
+message RequestLocalDataDeleteCanvasesByIDs {
+  repeated int64 canvas_ids = 1;
+}
+
+message ResponseLocalDataDeleteCanvasesByIDs {
+}
+
+message RequestLocalDataGetPens {
+}
+
+message ResponseLocalDataGetPens {
+  bytes pens_data = 1;
+}
+
+message RequestLocalDataSetPens {
+  bytes pens_data = 1;
+}
+
+message ResponseLocalDataSetPens {
+}
+
+message RequestLocalDataGetPensV2 {
+}
+
+message ResponseLocalDataGetPensV2 {
+  bytes pens_data = 1;
+}
+
+message RequestLocalDataSetPensV2 {
+  bytes pens_data = 1;
+}
+
+message ResponseLocalDataSetPensV2 {
+}
+
+message RequestLocalDataGetProfileByID {
+  uint32 profile_id = 1;
+}
+
+message ResponseLocalDataGetProfileByID {
+  bytes profile_data = 1;
+}
+
+message RequestLocalDataSetProfileByID {
+  uint32 profile_id = 1;
+  bytes profile_data = 2;
+}
+
+message ResponseLocalDataSetProfileByID {
+}
+
+message RequestLocalDataGetUserPreferences {
+}
+
+message ResponseLocalDataGetUserPreferences {
+  bytes user_preferences_data = 1;
+}
+
+message RequestLocalDataSetUserPreferences {
+  bytes user_preferences_data = 1;
+}
+
+message ResponseLocalDataSetUserPreferences {
+}
+
+message RequestLocalDataGetUserSettings {
+}
+
+message ResponseLocalDataGetUserSettings {
+  bytes user_settings_data = 1;
+}
+
+message RequestLocalDataSetUserSettings {
+  bytes user_settings_data = 1;
+}
+
+message ResponseLocalDataSetUserSettings {
+}
+
+message RequestLocalDataGetPatternSearchFilters {
+}
+
+message ResponseLocalDataGetPatternSearchFilters {
+  bytes pattern_search_filter_data = 1;
+}
+
+message RequestLocalDataSetPatternSearchFilters {
+  bytes pattern_search_filter_data = 1;
+}
+
+message ResponseLocalDataSetPatternSearchFilters {
+}
+
+message RequestLocalDataGetMaterialSizes {
+}
+
+message ResponseLocalDataGetMaterialSizes {
+  bytes material_sizes_data = 1;
+}
+
+message RequestLocalDataSetMaterialSizes {
+  bytes material_sizes_data = 1;
+}
+
+message ResponseLocalDataSetMaterialSizes {
+}
+
+message RequestLocalDataGetMaterialSettings {
+  string machine_serial = 1;
+}
+
+message ResponseLocalDataGetMaterialSettings {
+  bytes material_settings_data = 1;
+}
+
+message RequestLocalDataSetMaterialSettings {
+  string machine_serial = 1;
+  bytes material_settings_data = 2;
+}
+
+message ResponseLocalDataSetMaterialSettings {
+}
+
+message RequestLocalDataGetTagsByType {
+  string tag_type = 1;
+}
+
+message ResponseLocalDataGetTagsByType {
+  bytes tag_data = 1;
+}
+
+message RequestLocalDataSetTagsByType {
+  string tag_type = 1;
+  bytes tag_data = 2;
+}
+
+message ResponseLocalDataSetTagsByType {
+}
+
+message RequestLocalDataGetMachineFamilies {
+}
+
+message ResponseLocalDataGetMachineFamilies {
+  bytes machine_families_data = 1;
+}
+
+message RequestLocalDataSetMachineFamilies {
+  bytes machine_families_data = 1;
+}
+
+message ResponseLocalDataSetMachineFamilies {
+}
+
+message RequestLocalDataGetCountries {
+}
+
+message ResponseLocalDataGetCountries {
+  bytes countries_data = 1;
+}
+
+message RequestLocalDataSetCountries {
+  bytes countries_data = 1;
+}
+
+message ResponseLocalDataSetCountries {
+}
+
+message RequestLocalDataGetCalibrationMaterialSettings {
+  string machine_serial = 1;
+  string tool_type = 2;
+}
+
+message ResponseLocalDataGetCalibrationMaterialSettings {
+  bytes calibration_material_settings_data = 1;
+}
+
+message RequestLocalDataSetCalibrationMaterialSettings {
+  string machine_serial = 1;
+  string tool_type = 2;
+  bytes calibration_material_settings_data = 3;
+}
+
+message ResponseLocalDataSetCalibrationMaterialSettings {
+}
+
+message RequestLocalDataGetMachinePressureSettings {
+  string machine_serial = 1;
+}
+
+message ResponseLocalDataGetMachinePressureSettings {
+  bytes machine_pressure_settings_data = 1;
+}
+
+message RequestLocalDataSetMachinePressureSettings {
+  string machine_serial = 1;
+  bytes machine_pressure_settings_data = 2;
+}
+
+message ResponseLocalDataSetMachinePressureSettings {
+}
+
+message RequestLocalDataDeleteUserInfo {
+}
+
+message ResponseLocalDataDeleteUserInfo {
+}
+
+message RequestLocalDataGetImagesByIDs {
+  repeated uint32 image_ids = 1;
+}
+
+message ResponseLocalDataGetImagesByIDs {
+  repeated NativeLocalData.PBCanvasImageData images_data = 1;
+}
+
+message RequestLocalDataSetImagesByIDs {
+  repeated NativeLocalData.PBCanvasImageData images_data = 1;
+  uint32 canvas_cache_timestamp = 2;
+}
+
+message ResponseLocalDataSetImagesByIDs {
+}
+
+message RequestLocalDataDeleteImagesByIDs {
+  repeated uint32 image_ids = 1;
+}
+
+message ResponseLocalDataDeleteImagesByIDs {
+}
+
+message RequestLocalDataGetFontMetricsByID {
+  uint32 font_id = 1;
+}
+
+message ResponseLocalDataGetFontMetricsByID {
+  bytes font_metric_data = 1;
+}
+
+message RequestLocalDataSetFontMetricsByID {
+  uint32 font_id = 1;
+  bytes font_metric_data = 2;
+}
+
+message ResponseLocalDataSetFontMetricsByID {
+}
+
+message RequestLocalDataGetFontCharsByID {
+  uint32 font_id = 1;
+}
+
+message ResponseLocalDataGetFontCharsByID {
+  bytes font_chars_data = 1;
+}
+
+message RequestLocalDataSetFontCharsByID {
+  uint32 font_id = 1;
+  bytes font_chars_data = 2;
+}
+
+message ResponseLocalDataSetFontCharsByID {
+}
+
+message RequestLocalDataGetAllFontFamilies {
+  bool include_canvas_cache = 1;
+}
+
+message ResponseLocalDataGetAllFontFamilies {
+  repeated NativeLocalData.PBFontFamilyData all_font_families_data = 1;
+}
+
+message RequestLocalDataSetFontFamily {
+  NativeLocalData.PBFontFamilyData font_family_data = 1;
+  repeated NativeLocalData.PBSingleFontData font_family_fonts = 2;
+  uint32 canvas_cache_timestamp = 3;
+}
+
+message ResponseLocalDataSetFontFamily {
+}
+
+message RequestLocalDataSetFontFamilyOTF {
+  NativeLocalData.PBFontFamilyData font_family_data = 1;
+  repeated NativeLocalData.PBSingleFontDataOTF font_family_fonts = 2;
+  uint32 canvas_cache_timestamp = 3;
+}
+
+message ResponseLocalDataSetFontFamilyOTF {
+}
+
+message RequestLocalDataGetOTFFontFilePaths {
+  repeated string font_family_names = 1;
+}
+
+message ResponseLocalDataGetOTFFontFilePaths {
+  repeated NativeLocalData.PBFontFilePaths font_file_paths = 1;
+}
+
+message RequestLocalDataDeleteFontsByFamilies {
+  repeated string font_families_names = 1;
+}
+
+message ResponseLocalDataDeleteFontsByFamilies {
+}
+
+message RequestLocalDataGetAllImageIDs {
+  bool include_font_images = 1;
+  bool include_only_pattern_images = 2;
+}
+
+message ResponseLocalDataGetAllImageIDs {
+  repeated uint32 image_ids = 1;
+}
+
+message RequestLocalDataGetAllEntitlementIDs {
+}
+
+message ResponseLocalDataGetAllEntitlementIDs {
+  repeated uint32 entitlement_ids = 1;
+}
+
+message RequestLocalDataGetEntitlementsByIDs {
+  repeated uint32 entitlement_ids = 1;
+}
+
+message ResponseLocalDataGetEntitlementsByIDs {
+  bool all_entitled = 1;
+  repeated NativeLocalData.PBEntitlementData entitlements_data = 2;
+}
+
+message RequestLocalDataSetEntitlements {
+  repeated NativeLocalData.PBEntitlementData entitlements_data = 1;
+}
+
+message ResponseLocalDataSetEntitlements {
+}
+
+message RequestLocalDataCommitByTimestamp {
+  uint32 timestamp = 1;
+}
+
+message ResponseLocalDataCommitByTimestamp {
+}
+
+message RequestLocalDataClearCanvasCache {
+}
+
+message ResponseLocalDataClearCanvasCache {
+  repeated uint32 remaining_image_ids_after_clear = 1;
+}
+
+message RequestLocalDataSetEntityIDByImageID {
+  repeated NativeLocalData.PBCanvasImageData images_data = 1;
+}
+
+message ResponseLocalDataSetEntityIDByImageID {
+}
+
+message RequestLocalDataGetCanvasesForEntityIDs {
+  repeated uint32 entity_ids = 1;
+}
+
+message ResponseLocalDataGetCanvasesForEntityIDs {
+  repeated NativeLocalData.PBEntityIDToCanvasesData entity_id_canvases_data = 1;
+}
+
+message RequestLocalDataAppendEventData {
+  string base64_event_data = 1;
+}
+
+message ResponseLocalDataAppendEventData {
+}
+
+message RequestLocalDataGetEventData {
+}
+
+message ResponseLocalDataGetEventData {
+  string base64_event_data = 1;
+}
+
+message RequestLocalDataDeleteEventData {
+}
+
+message ResponseLocalDataDeleteEventData {
+}
+
+message RequestLocalDataRefreshDatabase {
+}
+
+message ResponseLocalDataRefreshDatabase {
+}
+
+message RequestLocalDataLinkFamilyToFontID {
+  repeated NativeLocalData.PBFontFamilyLinkData font_family_ids = 1;
+}
+
+message ResponseLocalDataLinkFamilyToFontID {
+}
+
+message RequestLocalDataUpdateImageIsPattern {
+  repeated NativeLocalData.PBImageIsPattern images_data = 1;
+}
+
+message ResponseLocalDataUpdateImageIsPattern {
+}
+
+message RequestLocalDataSetCanvasEntityIDs {
+  repeated NativeLocalData.PBCanvasIDToEntityIDsData entity_id_to_canvas_data = 1;
+}
+
+message ResponseLocalDataSetCanvasEntityIDs {
+}
+
+message RequestLocalDataGetCanvasDetailsAndSize {
+  repeated int64 canvas_ids = 1;
+}
+
+message ResponseLocalDataGetCanvasDetailsAndSize {
+  repeated NativeLocalData.PBCanvasDetailsFileData canvas_data = 1;
+}
+
+message RequestLocalDataGetBitmapFillById {
+  int64 image_id = 1;
+  string fill_id = 2;
+}
+
+message ResponseLocalDataGetBitmapFillById {
+  string bitmap = 1;
+}
+

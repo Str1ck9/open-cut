@@ -1,0 +1,35 @@
+# ─────────────────────────────────────────────────────────────────────────
+# Allowlist model: ignore everything at top level, then re-include only the
+# clean-room deliverables. Anything not explicitly un-ignored stays private.
+# This guarantees unpacked/ (proprietary), screenshots/ (PII), and local
+# session files are never committed, even by `git add -A`.
+# ─────────────────────────────────────────────────────────────────────────
+/*
+
+# Clean-room deliverables (re-included)
+!/README.md
+!/SPEC.md
+!/.gitignore
+!/findings
+!/tools
+!/analysis
+
+# Within analysis/: exclude verbatim/near-verbatim reproductions of the
+# target binary and empty/local artifacts.
+/analysis/main-strings.txt
+/analysis/deviceio-symbols-full.txt
+/analysis/bridge-protobuf-messages.raw.txt
+/analysis/asar-filelist.txt
+/analysis/rea-main-process.md
+/analysis/rea-main-process-v2.md
+/analysis/rea-preload.md
+/analysis/rea-main-process.err
+/analysis/rea-main-process-v2.err
+/analysis/rea-preload.err
+/analysis/package.json
+/analysis/blobs/
+
+# Explicitly never publish (also covered by the /* catch-all above)
+/unpacked/
+/screenshots/
+/resume.claude

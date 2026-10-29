@@ -1,0 +1,25 @@
+// recovered FileDescriptorProto: bridge/proto/device/message.proto
+edition = "2023";
+package bridge.proto.device;
+import "bridge/proto/device/registry.proto";
+import "bridge/proto/device/session.proto";
+
+message Message {
+  bridge.proto.device.RegistryAddRequest registry_add_request = 1;
+  bridge.proto.device.RegistryAddResponse registry_add_response = 2;
+  bridge.proto.device.RegistryRemoveRequest registry_remove_request = 3;
+  bridge.proto.device.RegistryRemoveResponse registry_remove_response = 4;
+  bridge.proto.device.RegistryRemoveAllRequest registry_remove_all_request = 5;
+  bridge.proto.device.RegistryRemoveAllResponse registry_remove_all_response = 6;
+  bridge.proto.device.RegistryGetAllRequest registry_get_all_request = 7;
+  bridge.proto.device.RegistryGetAllResponse registry_get_all_response = 8;
+  bridge.proto.device.SessionOpenRequest session_open_request = 9;
+  bridge.proto.device.SessionOpenResponse session_open_response = 10;
+  bridge.proto.device.SessionCloseRequest session_close_request = 11;
+  bridge.proto.device.SessionCloseResponse session_close_response = 12;
+  bridge.proto.device.SessionDataStreamRequest session_data_stream_request = 13;
+  bridge.proto.device.SessionDataStreamResponse session_data_stream_response = 14;
+  bridge.proto.device.RegistryUpdateRequest registry_update_request = 15;
+  bridge.proto.device.RegistryUpdateResponse registry_update_response = 16;
+}
+

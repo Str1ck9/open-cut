@@ -1,0 +1,432 @@
+// Recovered from protobuf.js static code in canvas-webw-*.js (Gap-1 Route B)
+// Method: decode() switch(tag>>>3) -> field numbers + reader types. [C for tags]
+// Enum-typed fields decode as int32 (wire-identical); scalar-vs-enum is ambiguous
+// and rendered as int32. Enum value sets: see analysis/canvas-protobuf-schema.txt.
+syntax = "proto3";
+import "google/protobuf/wrappers.proto";
+
+message BoundaryDerived {}  // referenced; decode not recovered in these workers
+message ClipGraphic {}  // referenced; decode not recovered in these workers
+message DifferenceGraphic {}  // referenced; decode not recovered in these workers
+message EraseGraphic {}  // referenced; decode not recovered in these workers
+message FlattenedGraphic {}  // referenced; decode not recovered in these workers
+message GraphicGroup {}  // referenced; decode not recovered in these workers
+message ImageBody {}  // referenced; decode not recovered in these workers
+message IntersectionGraphic {}  // referenced; decode not recovered in these workers
+message SlicedGraphic {}  // referenced; decode not recovered in these workers
+message SymmetricDifferenceGraphic {}  // referenced; decode not recovered in these workers
+message UnionGraphic {}  // referenced; decode not recovered in these workers
+message WeldedGraphic {}  // referenced; decode not recovered in these workers
+
+message AppliedMaterial {
+  MaterialClass Material = 1;
+  string Color = 2;
+  repeated uint32 DefaultPieceLocks = 3;
+}
+
+message Artboard {
+  string Id = 1;
+  string Path = 2;
+  repeated string ProjectTypes = 3;
+  string TemplateCanvasUuid = 4;
+  string ParentArtboardId = 5;
+  Intent Intent = 6;
+  Graphic Background = 7;
+}
+
+message Assembly {
+  string Id = 1;
+  string Name = 2;
+  repeated PhysicalObject Children = 3;
+  repeated Attachment Attachments = 4;
+  Matrix Transform = 5;
+  uint32 Quantity = 6;
+  Intent Intent = 7;
+  repeated uint32 UserLocks = 8;
+}
+
+message Attachment {
+  string Id = 1;
+  string SourceObjectId = 2;
+  string TargetObjectId = 3;
+  SurfaceLabel TargetSurface = 4;
+  AttachmentPlacement Placement = 5;
+  string Method = 6;
+}
+
+message AttachmentPlacement {
+  Point SourceAnchor = 1;
+  Point TargetPosition = 2;
+  double RotationRadians = 3;
+}
+
+message Bitmap {
+  repeated uint32 BitmapFillImageLayerId = 1;
+  int32 BitmapFillSingleSetGroupId = 2;
+  map<string,string> PreviewUrls = 3;
+  BitmapMetaData PreviewMetaData = 4;
+  BitmapMetaData PrintMetaData = 5;
+  Matrix FillBitmapAdjustment = 6;
+  SizeF64 FillBitmapToLayerNativeSize = 7;
+  bool FillBitmapMirrorHorizontal = 8;
+  bool FillBitmapMirrorVertical = 9;
+  int32 FillBitmapType = 10;
+  BitmapAdjustments BitmapAdjustments = 11;
+  string ImageSourceUuid = 12;
+  double Opacity = 13;
+}
+
+message BitmapAdjustments {
+  double BrightnessValue = 1;
+  double ContrastValue = 2;
+  double IntensityValue = 3;
+  bool IsInvert = 4;
+  string FilterName = 5;
+}
+
+message BitmapMetaData {
+  string FileName = 1;
+  SizeF64 FillSize = 2;
+}
+
+message Border {
+  double Width = 1;
+  string Color = 2;
+}
+
+message Boundary {
+  BoundaryExplicit Explicit = 1;
+  BoundaryDerived Derived = 2;
+}
+
+message BoundaryExplicit {
+  string Id = 1;
+  Graphic Geometry = 2;
+}
+
+message Cache {
+  repeated Graphic Layers = 1;
+  map<string,string> AttachIds = 2;
+  map<string,string> AutoWeldIds = 3;
+}
+
+message CanvasBody {
+  int32 CanvasType = 1;
+  SizeF64 CanvasSize = 2;
+  Graphic CanvasRootGraphic = 3;
+  string CanvasName = 4;
+  string SourceCanvasUuid = 5;
+  bool IsCricutProjectCanvas = 6;
+  string ParentCanvasUuid = 7;
+  repeated string ProjectTypes = 8;
+  repeated Artboard Artboards = 9;
+  bool IsTemplate = 10;
+  google.protobuf.BoolValue IsAutoSaveEnabled = 11;
+}
+
+message CanvasChangedBody {
+  CanvasBody CanvasBody = 1;
+  UpdateReasons UpdateReasons = 2;
+}
+
+message Circle {
+  double Radius = 1;
+  Point Center = 2;
+}
+
+message Design {
+  Workspace Workspace = 1;
+  string Name = 2;
+  repeated string ParentCanvasUuids = 3;
+  repeated string SourceCanvasUuids = 4;
+}
+
+message FontCharacterImage {
+  int32 ImageId = 1;
+  Graphic ImageRootGraphic = 2;
+}
+
+message GlyphGraphic {
+  string Value = 1;
+  int32 YOffset = 2;
+}
+
+message Graphic {
+  Matrix Transform = 1;
+  bool Visible = 2;
+  int32 LockedType = 3;
+  string DisplayName = 4;
+  bool MirrorHorizontal = 5;
+  bool MirrorVertical = 6;
+  SizeF64 NativeSize = 7;
+  GraphicContainer GraphicId = 8;
+  LayerGraphic LayerGraphic = 1001;
+}
+
+message GraphicContainer {
+  repeated Graphic Children = 1;
+  WeldedGraphic WeldedGraphic = 1001;
+  SlicedGraphic SlicedGraphic = 1002;
+  TextGraphic TextGraphic = 1003;
+  GlyphGraphic GlyphGraphic = 1004;
+  FlattenedGraphic FlattenedGraphic = 1005;
+  GraphicGroup GraphicGroup = 1006;
+  UnionGraphic UnionGraphic = 1007;
+  DifferenceGraphic DifferenceGraphic = 1008;
+  IntersectionGraphic IntersectionGraphic = 1009;
+  SymmetricDifferenceGraphic SymmetricDifferenceGraphic = 1010;
+  WarpedGraphic WarpedGraphic = 1011;
+  StickerizedGraphic StickerizedGraphic = 1012;
+  GuideGraphic GuideGraphic = 1013;
+  ClipGraphic ClipGraphic = 1014;
+  EraseGraphic EraseGraphic = 1015;
+}
+
+message GuideGraphic {
+  string TemplateId = 1;
+  bool IsCustom = 2;
+}
+
+message ImageConvertBody {
+  ImageBody ImageBody = 1;
+  repeated string UnsupportedList = 2;
+}
+
+message ImageMetadata {
+  int32 ImageId = 1;
+  string ImageUuid = 2;
+  int32 ImageSetId = 3;
+  int32 SingleImageSetGroupId = 4;
+}
+
+message ImageSourceDetails {
+  int32 ImageSourceId = 1;
+  repeated uint32 ImageSourceLayerPathIndex = 2;
+  int32 ImageSourceGlyphPathId = 3;
+  string ImageSourceName = 4;
+  double ImageSourceHeightDefault = 5;
+  int32 ImageSourceSingleSetGroupId = 6;
+  int32 ImageSourceFontSetGroupId = 7;
+  int32 ImageSourceOriginalCartridgeId = 8;
+  int32 ImageSourceType = 9;
+  repeated uint32 LayerOperationsUsedSet = 10;
+  string ImageSourceUuid = 11;
+  string UserUuid = 12;
+  int32 ImageSourceFontId = 13;
+}
+
+message ImageUploadBody {
+  ImageBody ImageBody = 1;
+  ImageMetadata ImageMetadata = 2;
+  bytes RasterImage = 3;
+  int32 UploadType = 4;
+}
+
+message Intent {
+  repeated string FilterIds = 1;
+  repeated string CategoryIds = 2;
+  repeated string TagIds = 3;
+}
+
+message LayerContourDetails {
+  repeated uint32 ContourOpenFlags = 1;
+  repeated uint32 ContourActiveFlags = 2;
+  int32 ContourCount = 3;
+  int32 ContourOpenCount = 4;
+  int32 ContourClosedCount = 5;
+}
+
+message LayerDataItem {
+  string LayerUuid = 1;
+  bytes LayerData = 2;
+}
+
+message LayerFill {
+  int32 FillType = 1;
+  string FillSolidColor = 2;
+  string FillSolidColorOriginal = 3;
+  Bitmap FillBitmap = 4;
+  int32 FillRule = 5;
+}
+
+message LayerFontGlyphMetrics {
+  double BearingLeft = 1;
+  double BearingRight = 2;
+  double Width = 3;
+  double CapHeight = 4;
+}
+
+message LayerGraphic {
+  int32 LayerPolarity = 1;
+  int32 LayerOutputType = 2;
+  int32 OriginalOutputType = 3;
+  repeated ImageSourceDetails LayerImageDetails = 4;
+  LayerFill LayerFill = 5;
+  LayerStroke LayerStroke = 6;
+  LayerContourDetails LayerContourDetails = 7;
+  LayerFontGlyphMetrics LayerFontGlyphMetrics = 8;
+  string LayerName = 10;
+  bytes LayerData = 11;
+  SizeF64 LayerNativeSize = 12;
+  int32 LayerOutputTypeAdjustmentLevel = 13;
+  string MaterialId = 15;
+  int32 MaterialType = 16;
+  string GraphicId = 17;
+}
+
+message LayerStroke {
+  int32 StrokeType = 1;
+  string StrokeColor = 2;
+  double StrokeWidth = 3;
+  repeated uint32 StrokeDash = 4;
+}
+
+message MaterialClass {
+  string Alias = 1;
+  repeated uint32 Capabilities = 2;
+}
+
+message Matrix {
+  double A = 1;
+  double B = 2;
+  double C = 3;
+  double D = 4;
+  double E = 5;
+  double F = 6;
+}
+
+message PhysicalObject {
+  Piece Piece = 1;
+  Substrate Substrate = 2;
+  Assembly Assembly = 3;
+}
+
+message Piece {
+  string Id = 1;
+  AppliedMaterial Material = 2;
+  Boundary Boundary = 3;
+  Surface Front = 4;
+  Surface Back = 5;
+  int32 ContainmentMode = 6;
+  repeated uint32 UserLocks = 7;
+  bool PreCut = 8;
+  uint32 Quantity = 9;
+  Intent Intent = 10;
+  Matrix Transform = 11;
+}
+
+message Point {
+  double X = 1;
+  double Y = 2;
+}
+
+message RectF64 {
+  Point Point = 1;
+  SizeF64 Size = 2;
+}
+
+message Region {
+  string Id = 1;
+  string Name = 2;
+  repeated Zone Zones = 3;
+}
+
+message SizeF64 {
+  double Width = 1;
+  double Height = 2;
+}
+
+message StickerizedGraphic {
+  int32 StickerType = 1;
+  Border Border = 2;
+  bool CutInteriorShape = 3;
+  bool CutDieCutEdge = 4;
+  Cache Cache = 5;
+}
+
+message Substrate {
+  string Id = 1;
+  repeated Surface Surfaces = 2;
+  string Color = 3;
+  repeated uint32 UserLocks = 4;
+  Intent Intent = 5;
+  Matrix Transform = 6;
+}
+
+message Surface {
+  string Id = 1;
+  SurfaceLabel Label = 2;
+  Graphic Content = 3;
+  repeated Region Regions = 4;
+  SurfaceRepresentation Representation = 5;
+}
+
+message SurfaceImage {
+  string BitmapId = 1;
+  string Url = 2;
+  RectF64 Frame = 3;
+}
+
+message SurfaceLabel {
+  int32 Kind = 1;
+  string Name = 2;
+}
+
+message SurfaceRepresentation {
+  Boundary Path = 1;
+  SurfaceImage Image = 2;
+  string DesignableArea = 3;
+}
+
+message TextGraphic {
+  string FontFamilyName = 1;
+  bool IsSystemFont = 2;
+  double FontSize = 3;
+  string FontStyle = 4;
+  int32 FontType = 5;
+  double LetterSpacing = 6;
+  double LineSpacing = 7;
+  int32 Alignment = 8;
+  int32 Style = 9;
+  repeated string TextIsolatedLayerColors = 10;
+  repeated string TextDeletedLayerColors = 11;
+  string Value = 12;
+  int32 Height = 13;
+  Circle Curve = 14;
+  double BaselineHeight = 15;
+  RectF64 TextRegion = 16;
+  int32 FontId = 17;
+  int32 VerticalAlignment = 18;
+  int32 TextMode = 19;
+  bool IsPlaceholderText = 20;
+  string GraphicId = 21;
+  int32 TextRenderer = 22;
+}
+
+message UpdateReasonFilter {
+  string FilterId = 1;
+  string FilterName = 2;
+}
+
+message UpdateReasons {
+  repeated UpdateReasonFilter ReasonFilters = 1;
+  string AdditionalNotes = 2;
+}
+
+message WarpedGraphic {
+  string WarpId = 1;
+  double TValue = 2;
+  Cache Cache = 3;
+}
+
+message Workspace {
+  string Id = 1;
+  repeated PhysicalObject Children = 2;
+}
+
+message Zone {
+  string Id = 1;
+  string Path = 2;
+  int32 Role = 3;
+}
+

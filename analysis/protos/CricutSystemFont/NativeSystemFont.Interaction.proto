@@ -1,0 +1,164 @@
+// recovered FileDescriptorProto: NativeSystemFont.Interaction.proto
+syntax = "proto3";
+package NativeSystemFont.Interaction;
+import "NativeSystemFont.Models.proto";
+
+enum PBStatus {
+  OK = 0;
+  ERROR_REQUEST_CANCELED = 1;
+  ERROR_REQUEST_TIMEOUT = 2;
+  ERROR_NATIVE_OS_CALL = 3;
+  ERROR_NATIVE_LIBRARY_CALL = 4;
+  ERROR_EXCEPTION_THROWN = 5;
+  ERROR_SIGNAL_ABORT = 6;
+  ERROR_PARSING_REQUEST = 7;
+  ERROR_SERIALIZING_RESPONSE = 8;
+  ERROR_UNHANDLED_REQUEST_TYPE = 9;
+  ERROR_INVALID_PARAMATER = 10;
+  ERROR_OBJECT_MISSING = 11;
+}
+
+message PBError {
+  NativeSystemFont.Interaction.PBStatus error_status = 1;
+  int32 error_no = 3;
+  int32 error_win = 4;
+  int32 error_internal = 5;
+  string error_message = 6;
+  string error_object = 7;
+}
+
+message PBSystemFontInteractionMessage {
+  string log_id = 2;
+  NativeSystemFont.Models.PBUserSettingsFont user_settings = 3;
+  double processing_time = 4;
+  NativeSystemFont.Interaction.RequestSystemFontList request_system_font_list = 6;
+  NativeSystemFont.Interaction.RequestSystemFontMetrics request_system_font_metrics = 8;
+  NativeSystemFont.Interaction.RequestSystemFontCharacter request_system_font_character = 10;
+  NativeSystemFont.Interaction.RequestSystemFontConversionData request_system_font_conversion_data = 12;
+  NativeSystemFont.Interaction.RequestSystemFontListOTF request_system_font_list_otf = 14;
+  NativeSystemFont.Interaction.RequestSystemFontParseOTF request_system_font_parse_otf = 28;
+  NativeSystemFont.Interaction.RequestSystemFontMetricsOTF request_system_font_metrics_otf = 16;
+  NativeSystemFont.Interaction.RequestSystemFontCharacterOTF request_system_font_character_otf = 18;
+  NativeSystemFont.Interaction.RequestSystemFontInfoOTF request_system_font_info_otf = 20;
+  NativeSystemFont.Interaction.RequestSystemFontSpellCheckText request_system_font_spell_check_text = 22;
+  NativeSystemFont.Interaction.RequestSystemFontSpellCheckWordAdd request_system_font_spell_check_word_add = 24;
+  NativeSystemFont.Interaction.RequestSystemFontSpellCheckWordRemove request_system_font_spell_check_word_remove = 26;
+  NativeSystemFont.Interaction.PBError response_error = 5;
+  NativeSystemFont.Interaction.ResponseSystemFontList response_system_font_list = 7;
+  NativeSystemFont.Interaction.ResponseSystemFontMetrics response_system_font_metrics = 9;
+  NativeSystemFont.Interaction.ResponseSystemFontCharacter response_system_font_character = 11;
+  NativeSystemFont.Interaction.ResponseSystemFontConversionData response_system_font_conversion_data = 13;
+  NativeSystemFont.Interaction.ResponseSystemFontListOTF response_system_font_list_otf = 15;
+  NativeSystemFont.Interaction.ResponseSystemFontParseOTF response_system_font_parse_otf = 29;
+  NativeSystemFont.Interaction.ResponseSystemFontMetricsOTF response_system_font_metrics_otf = 17;
+  NativeSystemFont.Interaction.ResponseSystemFontCharacterOTF response_system_font_character_otf = 19;
+  NativeSystemFont.Interaction.ResponseSystemFontInfoOTF response_system_font_info_otf = 21;
+  NativeSystemFont.Interaction.ResponseSystemFontSpellCheckText response_system_font_spell_check_text = 23;
+  NativeSystemFont.Interaction.ResponseSystemFontSpellCheckWordAdd response_system_font_spell_check_word_add = 25;
+  NativeSystemFont.Interaction.ResponseSystemFontSpellCheckWordRemove response_system_font_spell_check_word_remove = 27;
+}
+
+message RequestSystemFontList {
+}
+
+message ResponseSystemFontList {
+  repeated NativeSystemFont.Models.PBFont font_list = 1;
+}
+
+message RequestSystemFontMetrics {
+  NativeSystemFont.Models.FontSelection font_selection = 1;
+}
+
+message ResponseSystemFontMetrics {
+  NativeSystemFont.Models.Metrics metrics = 1;
+}
+
+message RequestSystemFontCharacter {
+  NativeSystemFont.Models.FontSelection font_selection = 1;
+  repeated int32 font_character_code_list = 2;
+  bool encode_path = 3;
+}
+
+message ResponseSystemFontCharacter {
+  repeated NativeSystemFont.Models.Character character_list = 1;
+}
+
+message RequestSystemFontConversionData {
+  NativeSystemFont.Models.FontSelection font_selection = 1;
+}
+
+message ResponseSystemFontConversionData {
+  NativeSystemFont.Models.FontSelection font_selection = 1;
+  NativeSystemFont.Models.Metrics metrics = 2;
+  repeated NativeSystemFont.Models.Character character_list = 3;
+}
+
+message RequestSystemFontListOTF {
+}
+
+message ResponseSystemFontListOTF {
+  repeated NativeSystemFont.Models.PBFontOTF font_list = 1;
+}
+
+message RequestSystemFontParseOTF {
+  NativeSystemFont.Models.PBFontOTF font_selection = 1;
+  bool encode_path = 2;
+}
+
+message ResponseSystemFontParseOTF {
+  bytes font_data = 1;
+}
+
+message RequestSystemFontMetricsOTF {
+  NativeSystemFont.Models.PBFontOTF font_selection = 1;
+  bool encode_path = 2;
+}
+
+message ResponseSystemFontMetricsOTF {
+  NativeSystemFont.Models.MetricsOTF font_metrics = 1;
+}
+
+message RequestSystemFontCharacterOTF {
+  NativeSystemFont.Models.PBFontOTF font_selection = 1;
+  repeated uint32 char_codes = 2;
+  bool encode_path = 3;
+}
+
+message ResponseSystemFontCharacterOTF {
+  repeated NativeSystemFont.Models.CharacterOTF character_list = 1;
+}
+
+message RequestSystemFontInfoOTF {
+  repeated NativeSystemFont.Models.PBFontFileOTF font_files = 1;
+  bool encode_path = 2;
+}
+
+message ResponseSystemFontInfoOTF {
+  repeated NativeSystemFont.Models.PBFontOTF font_list = 1;
+}
+
+message RequestSystemFontSpellCheckText {
+  NativeSystemFont.Models.TextEncoded text = 1;
+  NativeSystemFont.Models.TextEncoded language = 2;
+}
+
+message ResponseSystemFontSpellCheckText {
+  repeated NativeSystemFont.Models.SpellCheckActionAction actions = 1;
+}
+
+message RequestSystemFontSpellCheckWordAdd {
+  NativeSystemFont.Models.TextEncoded word = 1;
+  NativeSystemFont.Models.TextEncoded language = 2;
+}
+
+message ResponseSystemFontSpellCheckWordAdd {
+}
+
+message RequestSystemFontSpellCheckWordRemove {
+  NativeSystemFont.Models.TextEncoded word = 1;
+  NativeSystemFont.Models.TextEncoded language = 2;
+}
+
+message ResponseSystemFontSpellCheckWordRemove {
+}
+

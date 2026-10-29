@@ -1,0 +1,63 @@
+# Bifrost.wasm N-API surface — Cricut Design Space 10.9.118
+# Source: unpacked/design-space-app/chunk-BYrF6YNd.js (the module's JS loader)
+# Load: fetch('Bifrost.wasm') -> WebAssembly.instantiateStreaming -> emnapi (napi_register_wasm_v1)
+# Served via the renderer's custom 'cricut-wasm' URL scheme (standard/secure/cors/fetch/streaming).
+# One .wasm registers SIX N-API submodules destructured as:
+#   {Bifrost:At, Runtime:Ji, Tesseract:po, CriRaster:P8, CriGeo:I8, CriSVG:R8} = init(instance)
+# Members below are type/class exports accessed as <var>.<Name> in the loader chunk.
+# NOTE: crypto/handshake methods intentionally NOT enumerated (held pending legal review).
+
+## Bifrost (29 members seen in this chunk)
+  BifrostInfo
+  BluetoothLECharacteristic
+  BluetoothLECharacteristicProperties
+  BluetoothLENotification
+  BluetoothLEService
+  BootloaderDevice
+  CP4100FirmwareUpdateError
+  CP4100FirmwareUpdateProgressStage
+  CP4100FirmwareUpdateResult
+  ConnectionConfig
+  CricutBleAdvertisement
+  DeviceType
+  DumbledoreDevice
+  ErosDevice
+  GandalfDevice
+  GenericBluetoothLEPhysicalConnection
+  GenericPhysicalConnection
+  MCUType
+  MovementConfig
+  PressureToolColor
+  PressureToolDescription
+  PsycheDevice
+  ScoutDevice
+  ScoutProvisionerDevice
+  TcpIpMdnsDescriptor
+  TcpIpMdnsTxtRecord
+  WifiProvisioningError
+  WifiProvisioningErrorCode
+  WifiProvisioningResult
+
+## Runtime (1 members seen in this chunk)
+  Result
+
+## Tesseract (9 members seen in this chunk)
+  AccelerationMeasurement
+  AccelerationVector3DMeasurement
+  MovementSettings1D
+  MovementSettings3D
+  PressureToolSettings
+  Vector3D
+  VelocityMeasurement
+  VelocityVector3DMeasurement
+  WeightMeasurement
+
+## CriRaster (0 members seen in this chunk)
+  (accessed via wrappers elsewhere; no direct member access in this chunk)
+
+## CriGeo (0 members seen in this chunk)
+  (accessed via wrappers elsewhere; no direct member access in this chunk)
+
+## CriSVG (0 members seen in this chunk)
+  (accessed via wrappers elsewhere; no direct member access in this chunk)
+

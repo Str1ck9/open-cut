@@ -1,0 +1,189 @@
+// recovered FileDescriptorProto: NativeSystemPrinter.proto
+syntax = "proto3";
+package NativeSystemPrinter;
+
+enum PaperOrientation {
+  PAPER_ORIENTATION_UNSPECIFIED = 0;
+  PAPER_ORIENTATION_PORTRAIT = 1;
+  PAPER_ORIENTATION_LANDSCAPE = 2;
+}
+
+message PBUserSettingsPrinter {
+  string setting1 = 1;
+  string setting2 = 2;
+  string settings1 = 3;
+  string settings2 = 4;
+  string settings3 = 5;
+  string settings4 = 6;
+  string settings5 = 7;
+  string settings6 = 8;
+  string settings7 = 9;
+  string settings8 = 10;
+  string settings9 = 11;
+  string settings10 = 12;
+  string settings11 = 13;
+}
+
+message PBMatrixPrinter {
+  double a = 1;
+  double b = 2;
+  double c = 3;
+  double d = 4;
+  double e = 5;
+  double f = 6;
+}
+
+message PBSizeIntPrinter {
+  int32 width = 1;
+  int32 height = 2;
+}
+
+message PBSizePrinter {
+  double height = 1;
+  double width = 2;
+}
+
+message PBPointPrinter {
+  double x = 1;
+  double y = 2;
+}
+
+message PBRectPrinter {
+  NativeSystemPrinter.PBPointPrinter point = 1;
+  NativeSystemPrinter.PBSizePrinter size = 2;
+}
+
+message Printer {
+  string name = 1;
+  string port = 2;
+  bool is_default = 3;
+  NativeSystemPrinter.PBSizeIntPrinter size_max = 4;
+  NativeSystemPrinter.PBSizeIntPrinter size_min = 5;
+  repeated NativeSystemPrinter.PaperSize paper_sizes = 6;
+  repeated NativeSystemPrinter.Bin bins = 7;
+}
+
+message PaperSize {
+  string name = 1;
+  int32 type_id = 2;
+  string type_name = 3;
+  NativeSystemPrinter.PBSizeIntPrinter size = 4;
+}
+
+message Bin {
+  string name = 1;
+  bool is_default = 2;
+  int32 type_id = 3;
+}
+
+message FiducialData {
+  NativeSystemPrinter.PBRectPrinter rect = 1;
+  double weight = 2;
+}
+
+message PreviewLayerParams {
+  string group_guid = 1;
+  NativeSystemPrinter.PBMatrixPrinter transform = 2;
+  repeated uint32 contour_active_flags = 3;
+  string fill_color = 4;
+  int32 fill_bitmap_image_id = 5;
+  string fill_bitmap_file_name = 6;
+  NativeSystemPrinter.PBMatrixPrinter fill_bitmap_transform = 7;
+  NativeSystemPrinter.PBSizeIntPrinter fill_bitmap_size = 8;
+  double stroke_width = 9;
+  repeated double stroke_dash = 10;
+  string stroke_color = 11;
+}
+
+message PreviewGroupParams {
+  repeated NativeSystemPrinter.PreviewLayerParams layers = 1;
+  NativeSystemPrinter.PBMatrixPrinter transform = 2;
+}
+
+message PreviewParams {
+  repeated NativeSystemPrinter.PreviewGroupParams groups = 1;
+  string name = 2;
+  NativeSystemPrinter.PBSizeIntPrinter pixel_size = 3;
+  NativeSystemPrinter.PBRectPrinter view_box = 4;
+  string preserve_aspect_ratio = 5;
+  uint32 bleed_distance = 6;
+  NativeSystemPrinter.FiducialData fiducial_data = 7;
+  string preview_type = 8;
+  string mime_type = 10;
+}
+
+message PBSystemPrinterInteractionMessage {
+  string log_id = 2;
+  NativeSystemPrinter.PBUserSettingsPrinter user_settings = 3;
+  string magick_path = 4;
+  double processing_time = 5;
+  NativeSystemPrinter.RequestSystemPrinterList request_system_printer_list = 8;
+  NativeSystemPrinter.RequestSystemPrintImage request_system_print_image = 10;
+  NativeSystemPrinter.RequestSystemPrintTestPage request_system_test_page = 12;
+  NativeSystemPrinter.RequestSystemPrinterListAsync request_system_printer_list_async = 14;
+  string response_error = 7;
+  NativeSystemPrinter.ResponseSystemPrinterList response_system_printer_list = 9;
+  NativeSystemPrinter.ResponseSystemPrintImage response_system_print_image = 11;
+  NativeSystemPrinter.ResponseSystemPrintTestPage response_system_test_page = 13;
+  NativeSystemPrinter.ResponseSystemPrinterListAsync response_system_printer_list_async = 15;
+}
+
+message RequestSystemPrinterList {
+}
+
+message ResponseSystemPrinterList {
+  repeated NativeSystemPrinter.Printer printer_list = 1;
+}
+
+message RequestSystemPrinterListAsync {
+  uint32 timeout_seconds = 1;
+  uint32 update_interval_ms = 2;
+  bool use_safe_enumeration = 3;
+  uint32 open_printer_timeout_ms = 4;
+}
+
+message ResponseSystemPrinterListAsync {
+  repeated NativeSystemPrinter.Printer printer_list = 1;
+  bool is_complete = 2;
+  bool timed_out = 3;
+  uint32 elapsed_ms = 4;
+  string status = 5;
+  uint32 total_found = 6;
+}
+
+message PBFile {
+  bytes bytes = 1;
+  string mime_type = 2;
+  string filename = 3;
+}
+
+message RequestSystemPrintImage {
+  NativeSystemPrinter.Printer printer = 1;
+  bool use_system_dialog = 2;
+  NativeSystemPrinter.PaperSize paper_size = 3;
+  NativeSystemPrinter.Bin bin = 4;
+  NativeSystemPrinter.PBSizeIntPrinter margin = 5;
+  string print_name = 6;
+  int32 copies = 7;
+  int32 pixels_per_inch = 8;
+  NativeSystemPrinter.PBFile image = 9;
+  NativeSystemPrinter.PaperOrientation paper_orientation = 10;
+  bool disable_window_on_top_fix = 11;
+}
+
+message ResponseSystemPrintImage {
+}
+
+message RequestSystemPrintTestPage {
+  NativeSystemPrinter.Printer printer = 1;
+  bool use_system_dialog = 2;
+  NativeSystemPrinter.PaperSize paper_size = 3;
+  NativeSystemPrinter.Bin bin = 4;
+  NativeSystemPrinter.PBSizeIntPrinter margin = 5;
+  int32 pixels_per_inch = 6;
+  bool disable_window_on_top_fix = 7;
+}
+
+message ResponseSystemPrintTestPage {
+}
+

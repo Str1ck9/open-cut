@@ -1,0 +1,15 @@
+# Native helper binaries, Cricut Design Space 10.9.118 (/Applications/Cricut Design Space.app/Contents/Resources/plugins)
+# app.asar sha256 182907963bb52c2431e36ba70dcc65b1ba02b007f54a42710979911100af1800 (matches REA evidence)
+# sha256  size  path  archs
+f3b2ed062458549283379dd7f5550f1f2707f8183624690f235c63401a9d9675  10257136  canvas/cricut-magick  x86_64
+697ae633927674850d24165d159f65443d3a5b0a629e39b7a8f9696cf798c800  2508832  canvas/CricutCanvas  x86_64
+9e8f33859253001ad130b1839e47e844ca5f5a63598413944fb94cb306d2360a  10361936  cricut-device-io/CricutDeviceIO  x86_64 arm64
+9b21118291c02fac83321de3a81c55038ed6632c7c363154e53c20f458a75a76  1121504  cricut-device-io/libswift_Concurrency.dylib  x86_64 arm64
+e4117b8ff9bdae632cad4ea0ed145342b5c14eda9648a945622ad3ee9023f59c  12935760  device-common-next/CricutDevice  x86_64 arm64
+33119fb2c64d913387fe695b9ed6b645d5866fa43a415c7e6e2cb568742847cd  11086784  device-common/CricutDevice  x86_64 arm64
+6c287af1e2190411d359e80dec7c0b02cfd507eb8cede7b9da7967962335fa8d  14444544  local-data/CricutLocalData  x86_64 arm64
+43f91862e1b9d8700277c91c2fd5decdd107c62a626556e0ae1053949ab1a9a8  5392208  path-operation/CricutPathOperation  x86_64 arm64
+8430dfbbd49b068bd12d4105375a1f1aea50ae22bdbb16ab979b6740dadd8bc9  3366960  plugin-vulcan/CricutVulcanDevice  x86_64 arm64
+80b3470dfe6897b636e5e87381d230d036952c60b2fc92e8b67d4fcfa36839f9  7268720  system-fonts/CricutSystemFont  x86_64 arm64
+25c839bf64e9a320cdd1c0ec9a9ea21f643ed666f0e812afab6b450e9625730b  3970480  system-printer/CricutSystemPrinter  x86_64 arm64
+7026d62748fae974f3756e2407521b21652780a3b88ebdfad91d2e6b70c5f8b9  228544  wifi-scan/Cricut Design Space Wifi.app/Contents/MacOS/Cricut Design Space Wifi  x86_64 arm64

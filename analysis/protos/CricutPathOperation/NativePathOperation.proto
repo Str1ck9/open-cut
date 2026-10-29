@@ -1,0 +1,336 @@
+// recovered FileDescriptorProto: NativePathOperation.proto
+syntax = "proto3";
+package NativePathOperation;
+
+enum PBVectorFillType {
+  NONE_VFT = 0;
+  LINES_VFT = 1;
+  CONCENTRIC_VFT = 2;
+  PARTICLE_VFT = 3;
+  PATTERN_VFT = 4;
+  WAVES_VFT = 5;
+}
+
+enum PBVectorFillWaveType {
+  NONE_VFWT = 0;
+  SINE_VFWT = 1;
+  SQUARE_VFWT = 2;
+  TRIANGLE_VFWT = 3;
+}
+
+enum PBSVGCommand {
+  EMPTY_SVGC = 0;
+  INVALID_SVGC = -1;
+  M_SVGC = 1;
+  C_SVGC = 2;
+  H_SVGC = 3;
+  V_SVGC = 4;
+  L_SVGC = 5;
+  Z_SVGC = 6;
+}
+
+message PathOperationMetaData {
+  string app_version = 1;
+}
+
+message PBUserSettingsPathOp {
+  string setting1 = 1;
+  string setting2 = 2;
+  string settings1 = 3;
+  string settings2 = 4;
+  string settings3 = 5;
+  string settings4 = 6;
+  string settings5 = 7;
+  string settings6 = 8;
+  string settings7 = 9;
+  string settings8 = 10;
+  string settings9 = 11;
+  string settings10 = 12;
+  string settings11 = 13;
+}
+
+message PBMatrixPathOp {
+  double a = 1;
+  double b = 2;
+  double c = 3;
+  double d = 4;
+  double e = 5;
+  double f = 6;
+}
+
+message PBSizePathOp {
+  double height = 1;
+  double width = 2;
+}
+
+message PBPointPathOp {
+  double x = 1;
+  double y = 2;
+}
+
+message PBSizeIntPathOp {
+  int32 width = 1;
+  int32 height = 2;
+}
+
+message PBRectPathOp {
+  NativePathOperation.PBPointPathOp point = 1;
+  NativePathOperation.PBSizePathOp size = 2;
+}
+
+message PathData {
+  string path = 1;
+  bool is_encrypted = 2;
+  NativePathOperation.PBMatrixPathOp transform = 3;
+  repeated uint32 contour_active_flags = 4;
+}
+
+message TraceImageData {
+  repeated int32 image_data = 1;
+  int32 image_width = 2;
+  int32 image_height = 3;
+  int32 turd_size = 4;
+  int32 alpha_max = 5;
+  double opp_tolerance = 6;
+  int32 turn_policy = 7;
+}
+
+message PathResult {
+  string path = 1;
+  NativePathOperation.PBSizePathOp layer_native_size = 2;
+  NativePathOperation.PBPointPathOp group_offset = 3;
+  NativePathOperation.PBPointPathOp layer_offset = 4;
+  NativePathOperation.PBPointPathOp layer_offset_from_source = 5;
+  NativePathOperation.PBSizePathOp group_scale = 6;
+  NativePathOperation.PBSizePathOp layer_scale = 7;
+}
+
+message SliceResult {
+  NativePathOperation.PBPointPathOp group_offset = 1;
+  NativePathOperation.PathResult a_minus_b = 2;
+  NativePathOperation.PathResult a_int_b = 3;
+  NativePathOperation.PathResult b_minus_a = 4;
+  NativePathOperation.PathResult b_int_a = 5;
+}
+
+message PBMatVectorFillData {
+  NativePathOperation.PBVectorFillType fill_type = 1;
+  double tool_width = 2;
+  double density = 3;
+  double offset = 4;
+  double line_angle = 5;
+  double particle_max_random_spacing = 6;
+  double particle_random_rotation = 7;
+  double particle_min_scale = 8;
+  double particle_max_scale = 9;
+  string particle_fill_path = 10;
+  double particle_phase = 11;
+  NativePathOperation.PBVectorFillWaveType wave_type = 12;
+  uint32 wave_number_of_half_waves = 13;
+  double wave_phase = 14;
+  double wave_amplitude = 15;
+  uint32 wave_period = 16;
+}
+
+message PBSVGPathNode {
+  NativePathOperation.PBSVGCommand command = 1;
+  NativePathOperation.PBPointPathOp point = 2;
+  NativePathOperation.PBPointPathOp control1 = 3;
+  NativePathOperation.PBPointPathOp control2 = 4;
+}
+
+message PBCommonSVGRequest {
+  string path = 1;
+  NativePathOperation.PBMatrixPathOp matrix = 2;
+  NativePathOperation.PBPointPathOp point = 3;
+  double tolerance = 4;
+  NativePathOperation.PBPointPathOp min_request = 5;
+  NativePathOperation.PBPointPathOp max_request = 6;
+}
+
+message PBCommonSVGResponse {
+  string path = 1;
+  NativePathOperation.PBPointPathOp min_response = 2;
+  NativePathOperation.PBPointPathOp max_response = 3;
+  repeated NativePathOperation.PBPointPathOp points = 4;
+  bool clockwise = 5;
+  repeated NativePathOperation.PBSVGPathNode path_nodes = 6;
+  repeated string paths = 7;
+  repeated int32 bit_field = 8;
+  NativePathOperation.PBPointPathOp point = 9;
+  string a_minus_b = 10;
+  string b_minus_a = 11;
+  string intersection = 12;
+}
+
+message PBPathOperationInteractionMessage {
+  string message_guid = 1;
+  string log_id = 2;
+  NativePathOperation.PBUserSettingsPathOp user_settings = 3;
+  double processing_time = 4;
+  NativePathOperation.RequestPathOperationMetaData request_meta_data = 6;
+  NativePathOperation.RequestPathOperationWeld request_path_operation_weld = 8;
+  NativePathOperation.RequestPathOperationSlice request_path_operation_slice = 10;
+  NativePathOperation.RequestPathOperationTraceImage request_path_trace_image = 12;
+  NativePathOperation.RequestPathOperationTransformPath request_path_transform = 14;
+  NativePathOperation.RequestPathOperationGetBounds request_path_get_bounds = 16;
+  NativePathOperation.RequestPathOperationEncrypt request_path_encrypt = 18;
+  NativePathOperation.RequestPathOperationDecrypt request_path_decrypt = 20;
+  NativePathOperation.RequestPathOperationWeldSimple request_path_operation_weld_simple = 22;
+  NativePathOperation.RequestPathOperationSliceSimple request_path_operation_slice_simple = 24;
+  NativePathOperation.RequestPathOperationUpdatePathPoints request_path_operation_update_path_points = 26;
+  NativePathOperation.RequestPathOperationGetPathPoints request_path_operation_get_path_points = 28;
+  NativePathOperation.RequestPathOperationGetPathDirection request_path_operation_get_path_direction = 30;
+  NativePathOperation.RequestPathOperationDoVectorFill request_path_operation_do_vector_fill = 32;
+  NativePathOperation.RequestPathOperationParsePath request_path_operation_parse_path = 34;
+  string response_error = 5;
+  NativePathOperation.ResponsePathOperationMetaData response_meta_data = 7;
+  NativePathOperation.ResponsePathOperationWeld response_path_operation_weld = 9;
+  NativePathOperation.ResponsePathOperationSlice response_path_operation_slice = 11;
+  NativePathOperation.ResponsePathOperationTraceImage response_path_trace_image = 13;
+  NativePathOperation.ResponsePathOperationTransformPath response_path_transform = 15;
+  NativePathOperation.ResponsePathOperationGetBounds response_path_get_bounds = 17;
+  NativePathOperation.ResponsePathOperationEncrypt response_path_encrypt = 19;
+  NativePathOperation.ResponsePathOperationDecrypt response_path_decrypt = 21;
+  NativePathOperation.ResponsePathOperationWeldSimple response_path_operation_weld_simple = 23;
+  NativePathOperation.ResponsePathOperationSliceSimple response_path_operation_slice_simple = 25;
+  NativePathOperation.ResponsePathOperationUpdatePathPoints response_path_operation_update_path_points = 27;
+  NativePathOperation.ResponsePathOperationGetPathPoints response_path_operation_get_path_points = 29;
+  NativePathOperation.ResponsePathOperationGetPathDirection response_path_operation_get_path_direction = 31;
+  NativePathOperation.ResponsePathOperationDoVectorFill response_path_operation_do_vector_fill = 33;
+  NativePathOperation.ResponsePathOperationParsePath response_path_operation_parse_path = 35;
+}
+
+message RequestPathOperationMetaData {
+}
+
+message ResponsePathOperationMetaData {
+  NativePathOperation.PathOperationMetaData meta_data = 1;
+}
+
+message RequestPathOperationWeld {
+  repeated NativePathOperation.PathData paths = 1;
+  bool is_encryped = 3;
+}
+
+message ResponsePathOperationWeld {
+  NativePathOperation.PathResult path = 1;
+}
+
+message RequestPathOperationSlice {
+  NativePathOperation.PathData path_a = 1;
+  NativePathOperation.PathData path_b = 2;
+  bool is_encryped = 3;
+}
+
+message ResponsePathOperationSlice {
+  NativePathOperation.SliceResult paths = 1;
+}
+
+message RequestPathOperationTraceImage {
+  NativePathOperation.TraceImageData trace_image_data = 1;
+}
+
+message ResponsePathOperationTraceImage {
+  string fxg = 1;
+}
+
+message RequestPathOperationTransformPath {
+  string path = 1;
+  NativePathOperation.PBMatrixPathOp matrix = 2;
+}
+
+message ResponsePathOperationTransformPath {
+  string path = 1;
+}
+
+message RequestPathOperationGetBounds {
+  string path = 1;
+}
+
+message ResponsePathOperationGetBounds {
+  NativePathOperation.PBPointPathOp min_response = 1;
+  NativePathOperation.PBPointPathOp max_response = 2;
+}
+
+message RequestPathOperationEncrypt {
+  // [REDACTED — protected surface, SPEC §0.3] 1 field(s) present; layout omitted
+}
+
+message ResponsePathOperationEncrypt {
+  // [REDACTED — protected surface, SPEC §0.3] 1 field(s) present; layout omitted
+}
+
+message RequestPathOperationDecrypt {
+  // [REDACTED — protected surface, SPEC §0.3] 1 field(s) present; layout omitted
+}
+
+message RequestPathOperationParsePath {
+  repeated string path_data = 1;
+}
+
+message ResponsePathOperationParsePath {
+  repeated string path_data = 1;
+}
+
+message ResponsePathOperationDecrypt {
+  // [REDACTED — protected surface, SPEC §0.3] 1 field(s) present; layout omitted
+}
+
+message RequestPathOperationWeldSimple {
+  string path_1 = 1;
+  string path_2 = 2;
+}
+
+message ResponsePathOperationWeldSimple {
+  string path = 1;
+}
+
+message RequestPathOperationSliceSimple {
+  string path_1 = 1;
+  string path_2 = 2;
+}
+
+message ResponsePathOperationSliceSimple {
+  string a_minus_b = 1;
+  string b_minus_a = 2;
+  string intersection = 3;
+}
+
+message RequestPathOperationUpdatePathPoints {
+  NativePathOperation.PBPointPathOp point = 1;
+  NativePathOperation.PBPointPathOp min_request = 2;
+  NativePathOperation.PBPointPathOp max_request = 3;
+}
+
+message ResponsePathOperationUpdatePathPoints {
+  NativePathOperation.PBPointPathOp point = 1;
+  NativePathOperation.PBPointPathOp min_response = 2;
+  NativePathOperation.PBPointPathOp max_response = 3;
+}
+
+message RequestPathOperationGetPathPoints {
+  string path = 1;
+}
+
+message ResponsePathOperationGetPathPoints {
+  repeated NativePathOperation.PBPointPathOp points = 1;
+}
+
+message RequestPathOperationGetPathDirection {
+  string path = 1;
+}
+
+message ResponsePathOperationGetPathDirection {
+  bool clockwise = 1;
+}
+
+message RequestPathOperationDoVectorFill {
+  repeated NativePathOperation.PathData paths_to_fill = 1;
+  NativePathOperation.PBMatVectorFillData vector_fill_data = 2;
+}
+
+message ResponsePathOperationDoVectorFill {
+  repeated NativePathOperation.PathResult vector_fill_results = 1;
+}
+

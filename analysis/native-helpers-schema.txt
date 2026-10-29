@@ -1,0 +1,30 @@
+# CricutPathOperation / CricutSystemFont / CricutSystemPrinter — protobuf API surfaces
+# Design Space 10.9.118. Source: embedded protobuf descriptors in each C++ helper (strings).
+# All universal (x86_64+arm64). No machine-link crypto here (content-DRM note below).
+
+## CricutPathOperation (.NativePathOperation.*, 92 names) — geometry engine
+# Boolean ops : PBCommonSVGResponse{a_minus_b, b_minus_a, intersection, path, paths}  (union/difference/intersection)
+# Slice       : RequestPathOperationSlice, SliceSimple{path_1, path_2}
+# Vector fill : DoVectorFill, PBVectorFillType, PBVectorFillWaveType, PBMatVectorFillData{particle_fill_path}
+# Transform   : TransformPath, PBMatrixPathOp, PBPointPathOp, PBSizePathOp
+# Query       : GetBounds, GetPathDirection, GetPathPoints, ParsePath, PBSVGCommand, PBSVGPathNode
+# Image trace : TraceImageH  (raster -> vector)
+# Content DRM : RequestPathOperationEncrypt{path_data}, RequestPathOperationDecrypt{path_item}  [mechanism NOT analyzed]
+# Links: AppKit + a bundled Cricut geometry lib.
+
+## CricutSystemFont (.NativeSystemFont.*, 67 names) — system font access (links CoreText)
+# Requests : SystemFontList(/OTF), SystemFontInfoOTF, SystemFontMetrics(/OTF), SystemFontCharacter(/OTF),
+#            SystemFontParseOTF, SystemFontConversionData, SpellCheckText, SpellCheckWordAdd/Remove
+# Models   : PBFont, PBFontOTF, PBFontFileOTF, PBFontCharacterMapOTF, Character(/OTF){path_data},
+#            Metrics(/OTF), FontBBox, CharacterKerning, KerningPairOTF, FontSelection
+# Role: enumerates/parses installed system fonts, returns glyph outlines (path_data) + metrics + kerning;
+#       also hosts spell-check. OTF path is the newer variant alongside a legacy one.
+
+## CricutSystemPrinter (.NativeSystemPrinter.*, 56 names) — Print-Then-Cut host printing
+# Requests : SystemPrinterList(/Async), SystemPrintImage, SystemPrintTestPage
+# Models   : Printer{name, port}, Bin{name}, PaperSize{name,type_name}, PaperOrientation, PBFile{filename, mime_type}
+# Preview  : PreviewParams{name, mime_type, preview_type, preserve_aspect_ratio},
+#            PreviewLayerParams{fill_bitmap_file_name, fill_color, stroke_color, group_guid}, PreviewGroupParams
+# PTC      : FiducialData  (Print-Then-Cut registration marks)
+# Renderer : PBSystemPrinterInteractionMessage.magick_path -> uses bundled ImageMagick (canvas/cricut-magick)
+# Links: CoreGraphics + ApplicationServices (macOS print stack).
