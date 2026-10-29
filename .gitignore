@@ -9,6 +9,7 @@
 # Clean-room deliverables (re-included)
 !/README.md
 !/SPEC.md
+!/LICENSE
 !/.gitignore
 !/findings
 !/tools

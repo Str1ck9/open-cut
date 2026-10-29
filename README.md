@@ -60,3 +60,9 @@ The nine findings below are the detailed working notes behind the spec:
 4. **Cut model: documented.** Canvas protobuf model — **48 message types + 26 enums** recovered (05 §1) — plus 142 machine-command names (95 confirmed in both native and JS).
 5. **[REVISED] Next step if pursuing:** the machine module is the `Bifrost` submodule inside **`static-asset/wasm/Bifrost.wasm.br`** (a six-module N-API bundle; 05 §2), renderer-side Swift→WASM with 107 `handshake` strings. Its device-object surface is recovered; the remaining work is per-method signatures / the handshake itself. **This is the legal-gate item (conclusion 6)** — not done. (Tooling is available: REA's **Ghidra v12.1.4** works on these binaries once thinned to one arch — demonstrated on `CricutDeviceIO`, 11,991 procedures; Hopper/IDA absent. So the blocker here is legal, not tooling.)
 6. **Legal:** Cricut has litigated against protocol re-implementors (Make The Cut, Sure Cuts A Lot). Clean-room discipline is mandatory. Reconstructing the machine-link handshake is the step most exposed to DMCA §1201 anti-circumvention claims, so **get IP counsel's review before function-level work on conclusion 5.** Don't commit or share `unpacked/` (proprietary code/assets) or `screenshots/` (they contain account PII).
+
+## License
+
+This repository is released under [CC0 1.0 Universal](LICENSE) (public domain dedication). To the extent the authors hold any rights in the original material here — the notes, the spec, the tooling, and the derived schemas/maps — those rights are waived; use it for anything, no attribution required.
+
+This dedication covers **only** the authors' own contributions. It grants no rights in, and makes no claim over, Cricut's underlying intellectual property, trademarks, or any third-party rights (CC0 §4(a) and §4(c)); clearing those is the user's responsibility. See the disclaimer at the top of this file.
